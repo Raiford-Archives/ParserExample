@@ -47,11 +47,6 @@ namespace Parser.UnitTests
 			Assert.IsTrue(sorted3[8].LastName == "Anderson");
 			Assert.IsTrue(sorted3[9].LastName == "Anderson");
 
-
-
-
-
-
 		}
 	}
 }

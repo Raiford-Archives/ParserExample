@@ -7,7 +7,10 @@ using System.Threading.Tasks;
 
 namespace Parser.Core
 {
-	
+
+	/// <summary>
+	/// Sort Output according to spec
+	/// </summary>
 	public enum SortOutputFormat
 	{
 		/// <summary>
@@ -24,9 +27,18 @@ namespace Parser.Core
 		Output3 = 3
 	}
 
+	/// <summary>
+	/// Helper class to encapsulate the sorting behavior of people
+	/// </summary>
 	public class Sorter
 	{
-		
+
+		/// <summary>
+		/// Sorts a Person collection and returns the sorted results.
+		/// </summary>
+		/// <param name="people"></param>
+		/// <param name="sortFormat"></param>
+		/// <returns></returns>
 		public IList<Person> Sort(IList<Person> people, SortOutputFormat sortFormat)
 		{
 			IList<Person> sorted = null;
