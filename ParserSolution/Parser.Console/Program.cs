@@ -13,6 +13,7 @@ namespace Parser.Console
 {
 	class Program
 	{
+		private static string _apiBaseUrl = "http://localhost:8888/records/";
 		private static string _fileName;
 		private static SortOutputFormat _format;
 
@@ -84,19 +85,42 @@ namespace Parser.Console
 		static void CallRestApi()
 		{
 
+			Output(Environment.NewLine);
+			Output(Environment.NewLine);
+			Output("==============================================================================");
+			Output("==== Call Web Api (should be 3 sorted sets ===================================");
+			Output("==============================================================================");
+			Output(Environment.NewLine);
+
+			
 			// Create HttpCient and make a request to api/values 
 			HttpClient client = new HttpClient();
-			//client.BaseAddress = new Uri(_baseAddress);
-			//client.DefaultRequestHeaders.Accept.Clear();
-			//client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+			client.BaseAddress = new Uri(_apiBaseUrl);
+			client.DefaultRequestHeaders.Accept.Clear();
+			client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
 
-			//var response = client.GetAsync(_baseAddress + "records").Result;
+			var response = client.GetAsync("").Result;
 
-			//if (response != null)
-			//{
-			//	Output("Information from service: {0}", response.Content.ReadAsStringAsync().Result);
-			//}
+			response = client.GetAsync("gender").Result;
+			Output("Gender Sorted: {0}{1}", Environment.NewLine, response.Content.ReadAsStringAsync().Result);
+			Output(Environment.NewLine);
+
+			response = client.GetAsync("birthdate").Result;
+			Output("Birthdate Sorted: {0}{1}", Environment.NewLine, response.Content.ReadAsStringAsync().Result);
+			Output(Environment.NewLine);
+
+			response = client.GetAsync("name").Result;
+			Output("Name Sorted: {0}{1}", Environment.NewLine, response.Content.ReadAsStringAsync().Result);
+			Output(Environment.NewLine);
+
+
+
+			//response = client.GetAsync("birthdate").Result;
+			//response = client.GetAsync("name").Result;
+
+
+
 			//else
 			//{
 			//	Output("ERROR: Impossible to connect to service");

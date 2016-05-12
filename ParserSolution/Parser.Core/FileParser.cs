@@ -8,8 +8,16 @@ using System.Threading.Tasks;
 
 namespace Parser.Core
 {
-    public class FileParser
+	/// <summary>
+	/// Handles all the reading and parsing of the file and returns a People collection
+	/// </summary>
+	public class FileParser
     {
+		/// <summary>
+		/// Parses the file and returns a list of people from the file
+		/// </summary>
+		/// <param name="fullFileName"></param>
+		/// <returns></returns>
 		public IList<Person> ParseFile(string fullFileName)
 		{
 			IList<Person> people = new List<Person>();
@@ -41,6 +49,11 @@ namespace Parser.Core
 		}
 
 
+		/// <summary>
+		/// Parses a single line into a Person object
+		/// </summary>
+		/// <param name="line"></param>
+		/// <returns></returns>
 		private Person ParseLine(string line)
 		{
 			Person person = new Person();
@@ -57,6 +70,11 @@ namespace Parser.Core
 			return person;
 		}
 
+		/// <summary>
+		/// Cleans the string by removing white space and any other formatting as the code is developed
+		/// </summary>
+		/// <param name="input"></param>
+		/// <returns></returns>
 		private string CleanString(string input)
 		{
 			if (string.IsNullOrWhiteSpace(input))
