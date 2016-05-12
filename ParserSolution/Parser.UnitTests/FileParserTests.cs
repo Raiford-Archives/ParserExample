@@ -24,7 +24,29 @@ namespace Parser.UnitTests
 			IList<Person> sorted2 = sorter.Sort(people, SortOutputFormat.Output2);
 			IList<Person> sorted3 = sorter.Sort(people, SortOutputFormat.Output3);
 
-			// Verify the sorted lists are as expect using the test data
+			// Verify Output1 - Sorted by Gender
+			Assert.IsTrue(sorted1[0].FirstName == "Jackie" && sorted1[0].LastName == "Anderson" && sorted1[0].Gender == "Female");
+			Assert.IsTrue(sorted1[1].FirstName == "Beth" && sorted1[1].LastName == "Smith" && sorted1[1].Gender == "Female");
+			Assert.IsTrue(sorted1[2].FirstName == "Jack" && sorted1[2].LastName == "Anderson" && sorted1[2].Gender == "Male");
+
+
+			// Verify Output2 - Sorted by Birthdate ASC
+			Assert.IsTrue(sorted2[0].FirstName == "Jackie" && sorted2[0].LastName == "Anderson");
+			Assert.IsTrue(sorted2[1].FirstName == "Joe" && sorted2[1].LastName == "Smith");
+			Assert.IsTrue(sorted2[2].FirstName == "Beth" && sorted2[2].LastName == "Smith");
+
+			// Verify Output3 - Sorted by Lastname DESC
+			Assert.IsTrue(sorted3[0].LastName == "Smith");
+			Assert.IsTrue(sorted3[1].LastName == "Smith");
+			Assert.IsTrue(sorted3[2].LastName == "Smith");
+			Assert.IsTrue(sorted3[3].LastName == "Black");
+			Assert.IsTrue(sorted3[4].LastName == "Black");
+			Assert.IsTrue(sorted3[5].LastName == "Black");
+			Assert.IsTrue(sorted3[6].LastName == "Black");
+			Assert.IsTrue(sorted3[7].LastName == "Anderson");
+			Assert.IsTrue(sorted3[8].LastName == "Anderson");
+			Assert.IsTrue(sorted3[9].LastName == "Anderson");
+
 
 
 

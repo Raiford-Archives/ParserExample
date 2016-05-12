@@ -24,8 +24,11 @@ namespace Parser.Core
 				// Parse line into Person
 				foreach (string line in File.ReadLines(fullFileName))
 				{
-					Person person = ParseLine(line);
-					people.Add(person);
+					if (!string.IsNullOrWhiteSpace(line))
+					{
+						Person person = ParseLine(line);
+						people.Add(person);
+					}
 				}
 			}
 			catch (Exception exception)
@@ -45,13 +48,22 @@ namespace Parser.Core
 			string[] lines = line.Split(',');
 
 			// Assume data is aligned
-			person.LastName = lines[0];
-			person.FirstName = lines[1];
-			person.Gender = lines[2];
-			person.FavoriteColor = lines[3];
+			person.LastName = CleanString(lines[0]);
+			person.FirstName = CleanString(lines[1]);
+			person.Gender = CleanString(lines[2]);
+			person.FavoriteColor = CleanString(lines[3]);
 			person.DateOfBirth = DateTime.Parse(lines[4]);
 
 			return person;
+		}
+
+		private string CleanString(string input)
+		{
+			if (string.IsNullOrWhiteSpace(input))
+				return "";
+
+			return input.Trim();
+
 		}
 
 

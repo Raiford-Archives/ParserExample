@@ -7,10 +7,20 @@ using System.Threading.Tasks;
 
 namespace Parser.Core
 {
+	
 	public enum SortOutputFormat
 	{
+		/// <summary>
+		/// sorted by gender(females before males) then by last name ascending.
+		/// </summary>
 		Output1 = 1,
+		/// <summary>
+		/// sorted by birth date, ascending
+		/// </summary>
 		Output2 = 2,
+		/// <summary>
+		/// sorted by last name, descending
+		/// </summary>
 		Output3 = 3
 	}
 

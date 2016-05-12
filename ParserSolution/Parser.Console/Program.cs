@@ -13,10 +13,8 @@ namespace Parser.Console
 {
 	class Program
 	{
-		private static string _baseAddress = "http://localhost:8888/";
 		private static string _fileName;
 		private static SortOutputFormat _format;
-
 
 		static void Main(string[] args)
 		{
@@ -38,28 +36,21 @@ namespace Parser.Console
 				PauseExit();
 			}
 
-
+			// Create the Worker classes - These contain all the implementation code.
 			FileParser parser = new FileParser();
 			Sorter sorter = new Sorter();
-
-
-
-			// Parse People and Output
+			
+			// Parse People from file
 			IList<Person> people = parser.ParseFile(_fileName);
 
-			// Sort
+			// Sort People
 			IList<Person> sorted = sorter.Sort(people, _format);
 
-			// Display
+			// Display People
 			Output(people);
-
-			// Start the Owin Web Server that hosts the Rest Api
-			StartWebServer();
-
+						
 			// Call REST Api
 			CallRestApi();
-
-
 
 			// Wait for Press any Key
 			PauseExit();
@@ -84,28 +75,18 @@ namespace Parser.Console
 				Output(p.ToString());
 			}
 		}
-
 		static void PauseExit()
 		{
 			Output("Press any key to continue...");
 			System.Console.ReadKey();
-		}
-
-		static void StartWebServer()
-		{
-			using (WebApp.Start<Startup>(url: _baseAddress))
-			{				
-				
-			}	
-		}
-
+		}		
 
 		static void CallRestApi()
 		{
 
 			// Create HttpCient and make a request to api/values 
 			HttpClient client = new HttpClient();
-			client.BaseAddress = new Uri(_baseAddress);
+			//client.BaseAddress = new Uri(_baseAddress);
 			//client.DefaultRequestHeaders.Accept.Clear();
 			//client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
